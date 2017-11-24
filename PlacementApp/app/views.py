@@ -1,5 +1,5 @@
-from app import app
+from app import fapp
 
-@app.route('/')
+@fapp.route('/')
 def index():
     return 'Hello World!'
