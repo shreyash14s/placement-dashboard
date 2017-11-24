@@ -1,22 +1,90 @@
-from sqlalchemy import Column, Integer, String, Float, CheckConstraint, Enum
-from app.database import Base
+import enum
+from sqlalchemy import Column, Integer, String, Float, CheckConstraint, \
+    Enum, Date, ForeignKey
+from sqlalchemy_utils.types.choice import ChoiceType
+from sqlalchemy.orm import relationship
+# from app.database import Base
+from app.database import db
+# from sqlalchemy.schema import CreateTable
+# import sqlalchemy.dialects.mysql as mysql
 
-class Student(Base):
+# Enum = db.Enum
+# Column = db.Column
+# String = db.String
+
+class Stream(enum.Enum):
+    CSE = 'CSE'
+    IS = 'IS'
+    EEE = 'EEE'
+    ECE = 'ECE'
+    ME = 'ME'
+    BT = 'BT'
+    CV = 'CV'
+
+class Student(db.Model):
     __tablename__ = 'student'
-    name = Column(String(320), nullable=False)
-    usn = Column(String(120))
+    name = Column(String(120), nullable=False)
+    usn = Column(String(15), primary_key=True)
+    stream = Column(Enum(Stream))
+    age = Column(Integer, CheckConstraint('age > 18'))
+    tenth_percentage = Column(Float, CheckConstraint('tenth_percentage>=0 and tenth_percentage<=100'))
+    twelfth_percentage = Column(Float, CheckConstraint('tenth_percentage>=0 and tenth_percentage<=100'))
+    cgpa = Column(Float, CheckConstraint('cgpa_student>0 and cgpa_student<=10.0'))
+    email_id = Column(String(50), nullable=False)
+    resume_link = Column(String(320))
 
-    def __init__(self, name=None, usn=None):
+    def __init__(self, name=None, usn=None, stream=None, age=None, tenth=None, \
+            twelfth=None, cgpa=None, email=None, resume=None):
         self.name = name
         self.usn = usn
+        self.stream = stream
+        self.age = age
+        self.tenth_percentage = tenth
+        self.twelfth_percentage = twelfth
+        self.cgpa = cgpa
+        self.email_id = email
+        self.resume_link = resume
 
     def __repr__(self):
-        return '<User %r>' % (self.name)
+        return '<User %r, %s>' % (self.name, self.usn)
 
-class CGPAList(Base):
-    __tablename__ = 'cgpa_list'
-    usn = Column(String(15), nullable=False)
-    cgpa = Column(Float, CheckConstraint('cgpa>0 and cgpa<=10'))
+# print(CreateTable(Student.__table__).compile(dialect=mysql.dialect()))
+
+class Company(db.Model):
+    __tablename__ = 'company'
+    name = Column(String(120), nullable=False)
+    company_id = Column(Integer, primary_key=True)
+    test_date = Column(Date, nullable=False)
+    interview_date = Column(Date, nullable=False)
+    tier = Column(Integer, CheckConstraint('tier>=1 and tier<=3'))
+    website = Column(String(320))
+    postal_address = Column(String(500))
+    company_sector = Column(String(50))
+
+    def __init__(self, name=None, company_id=None, test_date=None, interview_date=None, \
+            tier=None, company=None, website=None, postal_address=None, company_sector=None):
+        self.name = name
+        self.company_id = company_id
+        self.test_date = test_date
+        self.interview_date = interview_date
+        self.tier = tier
+        self.company = company
+        self.website = website
+        self.postal_address = postal_address
+        self.company_sector = company_sector
+
+    def __repr__(self):
+        return '<Company %s>' % (self.name)
+
+# print(CreateTable(Company.__table__).compile(dialect=mysql.dialect()))
+
+class Registrations(db.Model):
+    __tablename__ = 'registrations'
+    usn = Column(String(15), ForeignKey('student.usn'), primary_key=True, nullable=False)
+    company_id = Column(Integer, ForeignKey('company.company_id'), primary_key=True)
+
+    student = relationship('Student', foreign_keys='Registrations.usn')
+    company = relationship('Company', foreign_keys='Registrations.company_id')
 
     def __init__(self, usn=None, cgpa=None):
         self.usn = usn
@@ -24,3 +92,17 @@ class CGPAList(Base):
 
     def __repr__(self):
         return '<CGPA %s = %s>' % (self.usn, self.cgpa)
+
+# print(CreateTable(Registrations.__table__).compile(dialect=mysql.dialect()))
+
+# class CGPAList(db.Model):
+#     __tablename__ = 'cgpa_list'
+#     usn = Column(String(15), nullable=False)
+#     cgpa = Column(Float, CheckConstraint('cgpa>0 and cgpa<=10'))
+
+#     def __init__(self, usn=None, cgpa=None):
+#         self.usn = usn
+#         self.cgpa = cgpa
+
+#     def __repr__(self):
+#         return '<CGPA %s = %s>' % (self.usn, self.cgpa)
