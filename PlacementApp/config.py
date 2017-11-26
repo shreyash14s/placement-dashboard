@@ -5,6 +5,7 @@ DEBUG = True
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 EXCEL_FILES_DIR = os.path.join(BASE_DIR, 'excels')
+os.makedirs(EXCEL_FILES_DIR, exist_ok=True)
 
 # Define the database - we are working with
 # SQLite for this example

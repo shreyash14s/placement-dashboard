@@ -29,9 +29,3 @@ def register_for(usn, company_id):
     Register the student for company.
     '''
     pass
-
-def get_excel_sheet(company_id):
-    '''
-    Create an excel sheet for company.
-    '''
-    pass
