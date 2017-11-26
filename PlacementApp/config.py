@@ -3,13 +3,14 @@ DEBUG = True
 
 # Define the application directory
 import os
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))  
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+EXCEL_FILES_DIR = os.path.join(BASE_DIR, 'excels')
 
 # Define the database - we are working with
 # SQLite for this example
 # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql:///' + os.path.join(BASE_DIR, 'app.db')
 # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql:////Users/sarnayak/Desktop/app.db'
-# SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:shreyash@/app.db'
+# SQLALCHEMY_DATABASE_URI = 'mysql+pymysql:///file.db'
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:shreyash@localhost/placement'
 # /Users/sarnayak/Desktop/Sem7/SE_Project/placement-dashboard/PlacementApp/
 DATABASE_CONNECT_OPTIONS = {}
