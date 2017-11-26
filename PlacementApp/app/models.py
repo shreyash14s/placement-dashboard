@@ -29,7 +29,7 @@ class Student(db.Model):
     age = Column(Integer, CheckConstraint('age > 18'))
     tenth_percentage = Column(Float, CheckConstraint('tenth_percentage>=0 and tenth_percentage<=100'))
     twelfth_percentage = Column(Float, CheckConstraint('tenth_percentage>=0 and tenth_percentage<=100'))
-    cgpa = Column(Float, CheckConstraint('cgpa_student>0 and cgpa_student<=10.0'))
+    cgpa = Column(Float, CheckConstraint('cgpa>0 and cgpa<=10.0'))
     email_id = Column(String(50), nullable=False)
     resume_link = Column(String(320))
 
