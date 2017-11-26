@@ -2,6 +2,7 @@ import enum
 from sqlalchemy import Column, Integer, String, Float, CheckConstraint, \
     Enum, Date, ForeignKey
 from sqlalchemy_utils.types.choice import ChoiceType
+from sqlalchemy_utils.types.password import PasswordType
 from sqlalchemy.orm import relationship
 # from app.database import Base
 from app.database import db
@@ -106,3 +107,37 @@ class Registrations(db.Model):
 
 #     def __repr__(self):
 #         return '<CGPA %s = %s>' % (self.usn, self.cgpa)
+
+class StudentUser(db.Model):
+    __tablename__ = 'student_user'
+    usn = Column(String(15), ForeignKey('student.usn'), primary_key=True, nullable=False)
+    password = Column(PasswordType(
+            schemes=[
+                'pbkdf2_sha512'
+            ]
+        ))
+
+    student = relationship('Student', foreign_keys='StudentUser.usn')
+
+    def __init__(self, usn=None, passwd=None):
+        self.usn = usn
+        self.password = passwd
+
+    def __repr__(self):
+        return '<StudentUser %s>' % (self.usn)
+
+class PlacementUser(db.Model):
+    __tablename__ = 'placement_user'
+    name = Column(String(20), primary_key=True, nullable=False)
+    password = Column(PasswordType(
+            schemes=[
+                'pbkdf2_sha512'
+            ]
+        ))
+    
+    def __init__(self, name=None, passwd=None):
+        self.name = name
+        self.password = passwd
+
+    def __repr__(self):
+        return '<PlacementUser %s>' % (self.usn)
