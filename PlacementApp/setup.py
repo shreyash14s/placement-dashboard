@@ -7,6 +7,8 @@ setup(
     install_requires=[
         'flask',
         'sqlalchemy',
+        'Flask-SQLAlchemy',
+        'sqlalchemy_utils',
         'openpyxl',
         'passlib',
         'PyMySQL'
