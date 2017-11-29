@@ -8,6 +8,7 @@ setup(
         'flask',
         'sqlalchemy',
         'openpyxl',
-        'passlib'
+        'passlib',
+        'PyMySQL'
     ],
 )
