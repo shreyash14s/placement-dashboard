@@ -1,5 +1,6 @@
 from app.models import StudentUser
 from app.models import PlacementUser
+from app.models import Company, Registrations, Student
 def signup_student(user, pwd):
     '''
     Create new student user.
@@ -19,10 +20,9 @@ def get_all_companies():
     pass
 
 def get_student_details(usn):
-    '''
-    Returns the student details.
-    '''
-    pass
+    q = Students.query.get(usn)
+    stud_details = [q.usn, q.name, q.email_id, q.tenth_percentage, q.twelfth_percentage, q.cgpa]
+    return stud_details
 
 def register_for(usn, company_id):
     '''
