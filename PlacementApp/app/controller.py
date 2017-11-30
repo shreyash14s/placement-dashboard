@@ -23,7 +23,7 @@ def get_all_companies():
     pass
 
 def get_student_details(usn):
-    q = Students.query.get(usn)
+    q = Student.query.get(usn)
     stud_details = [q.usn, q.name, q.email_id, q.tenth_percentage, q.twelfth_percentage, q.cgpa]
     return stud_details
 
@@ -71,11 +71,10 @@ def remove_company(name, company_id, test_date, interview_date, \
     Sends true if company is removed successfuly.
     '''
     pass
-def remove_studet(usn):
-    ''' 
-    PlacementUSer can remove a student if they want to block him
-    '''
-    pass
+def remove_student(usn):
+     Student.query.filter_by(Student.usn=usn).delete()
+     return "Student deleted"
+
 def make_announcement(message):
     '''
     Allows the placement user to make announcement to all the students
