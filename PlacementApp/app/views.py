@@ -53,10 +53,10 @@ def login():
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('dashboard'))
 
-@fapp.route('/dashboard/register_for', methods=['GET'])
+@fapp.route('/dashboard/register_for', methods=['POST'])
 # @login_required_student
 def register_company():
-    usn = request.args.get('usn').upper()
+    usn = session['username']
     company_id = request.args.get('company_id')
     control.register_for(usn, company_id)
     # if usn and company_id and usn == session['username']:
@@ -83,8 +83,17 @@ def get_stud_status(usn):
 @fapp.route("/dashboard/get_companies", methods=['GET'])
 # @login_required_student
 def get_companies():
+    #single quotes isnt json need double quotes strictly
+    #also need to remove date type
+
     comp_details = control.get_all_companies()
-    return str(comp_details)
+    
+    for x in comp_details:
+        x.pop('test_date')
+        x.pop('interview_date')
+        x.pop('register_date')
+    comp_details=str(comp_details).replace("\'","\"")
+    return str(comp_details) 
 
 @fapp.route("/dashboard/add_company", methods=['POST'])
 def add_comp():

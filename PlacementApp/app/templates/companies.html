@@ -25,17 +25,14 @@
             $(document).ready(function(){
                 $.ajax({
                     type: 'GET',
-                    url: "/placement/get_new_registrants",
-                    datatype: 'json',
-                    success: function(data1){
-
-                        data1 = '[{"company_sector": "Consultancy", "name": "Abcd", "company_id": 11, "tier": 1, "postal_address": "Addr10", "website": "www.deloitte.com", "cutoff_gpa": 8.0}]';
-
-                        var jsonobj= JSON.parse(data1);
-                        // alert(jsonobj)
+                    url: "/dashboard/get_companies",
+                    dataType: 'json',
+                    success: function(data){
+                        var jsonobj= data;
+                       //  alert(jsonobj)
                         for(stud in jsonobj)
                         {
-                            
+                           // alert(stud)
                             tempdiv = document.createElement("div");
                             tempbutton=document.createElement('button');
                             tempdiv.style="padding:1.2%";                    
@@ -45,7 +42,7 @@
                             tempbutton.value="Register";
                             tempbutton.innerHTML = "Register";
                             // tempdiv.innerHTML="Name: "+jsonobj[stud]['name'] + ",&emsp;&emsp;&emsp;USN: " + jsonobj[stud]['usn'] +"&emsp;&emsp;&emsp;"+ jsonobj[stud]['CGPA']+"&emsp;&emsp;&emsp;";
-                            // console.log(jsonobj[stud].name);
+                             console.log(jsonobj[stud].name);
 
                             tempdiv1 = document.createElement("div");
                             tempdiv1.style=" background-color: rgb(0, 0, 0); background-color: rgba(0, 255, 255, 0.5);"; 
@@ -89,7 +86,7 @@
                             // alert("ok");
                             $.ajax({
                                 type:'POST',
-                                url: "/placement/add_student",
+                                url: "/dashboard/register_for",
                                 dataType: 'text',
                                 contentType: "application/json; charset=utf-8",
                                 data: JSON.stringify(jsonobj[stud]),
