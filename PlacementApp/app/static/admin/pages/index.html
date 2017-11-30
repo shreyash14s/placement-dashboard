@@ -56,7 +56,9 @@
                             tempbutton.value="Authenticate";
                             tempbutton.innerHTML = "Authenticate";
                             tempdiv.innerHTML="Name: "+jsonobj[stud]['name'] + ", USN: " + jsonobj[stud]['usn'];
-                            console.log(jsonobj[stud].name)
+                            console.log(jsonobj[stud].name);
+                            tempdiv.appendChild(tempbutton);
+                        document.getElementById("parent").appendChild(tempdiv);
                         }
                         tempbutton.onclick=function(){
                             alert("ok");
@@ -71,8 +73,7 @@
                                 error:function(exception){alert('Exception:'+exception);}
                             });
                         }
-                        tempdiv.appendChild(tempbutton);
-                        document.getElementById("parent").appendChild(tempdiv);
+                       
                         
                     },
                     
