@@ -1,11 +1,13 @@
 from app import fapp
 from app.query import gen_excel_sheets
-from app.controller import login_student, login_placementuser, register_for, get_student_details, remove_student, get_all_companies, get_student_status
+# from app.controller import login_student, login_placementuser, register_for, get_student_details, remove_student, get_all_companies
+import app.controller as control
 from app.views_placement import login_required_placement
 from flask import send_from_directory, render_template, flash, redirect, \
         url_for, session, request
 # from flask.ext.login import login_user, logout_user, current_user, login_required
 from functools import wraps
+import json
 
 def login_required_student(f):
     @wraps(f)
@@ -19,8 +21,18 @@ def login_required_student(f):
 
 @fapp.route('/')
 def index():
-    return render_template('dashboard.html')
+    return render_template('index.html')
     # return render_template('index.html')
+
+@fapp.route('/dashboard')
+@login_required_student
+def dashboard():
+    return render_template('dashboard.html')
+
+@fapp.route('/companies.html')
+@login_required_student
+def companies():
+    return render_template('companies.html')
 
 # @fapp.route('/dashboard')
 # def dashboard():
@@ -28,11 +40,11 @@ def index():
 
 @fapp.route('/login', methods=['POST'])
 def login():
-    username = request.form['username']
+    username = request.form['username'].upper()
     password = request.form['password']
     # registered_user = User.query.filter_by(username=username,password=password).first()
     # if registered_user is None:
-    if not login_student(username, password):
+    if not control.login_student(username, password):
         flash('Username or Password is invalid', 'error')
         return redirect(url_for('index'))
     # login_user(registered_user)
@@ -41,17 +53,12 @@ def login():
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('dashboard'))
 
-@fapp.route('/dashboard')
-@login_required_student
-def dashboard():
-    return render_template('sidebar.html')
-
 @fapp.route('/dashboard/register_for', methods=['GET'])
 # @login_required_student
 def register_company():
-    usn = request.args.get('usn')
+    usn = request.args.get('usn').upper()
     company_id = request.args.get('company_id')
-    register_for(usn, company_id)
+    control.register_for(usn, company_id)
     # if usn and company_id and usn == session['username']:
     #     try:
     #         register_for(usn, company_id)
@@ -62,34 +69,34 @@ def register_company():
     return 'ok'
 
 @fapp.route("/dashboard/student_details/<usn>", methods=['GET'])
-@login_required_student
+# @login_required_student
 def get_student_details_view(usn):
-    details = get_student_details(usn)
-    return str(details)
+    details = control.get_student_details(usn)
+    return json.dumps(details)
 
 @fapp.route("/dashboard/get_stud_status/<usn>", methods=['GET'])
 # @login_required_placement
 def get_stud_status(usn):
-    stat = get_student_status(usn)
-    return str(stat)
+    stat = control.get_student_status(usn)
+    return json.dumps(stat)
 
 @fapp.route("/dashboard/get_companies", methods=['GET'])
 # @login_required_student
 def get_companies():
-    comp_details = get_all_companies()
+    comp_details = control.get_all_companies()
     return str(comp_details)
-     
+
 @fapp.route("/dashboard/add_company", methods=['POST'])
 def add_comp():
-	name = request.form('name')
-	company_id = request.form('company_id')
-	cutoff_gpa = request.form('cutoff_gpa')
-	register_date = request.form('register_date')
-	test_date = request.form('test_date')
-	interview_date = request.form('interview_date')
-	tier = request.form('tier')
-	website = request.form('website')
-	postal_address = request.form('postal_address')
-	company_sector = request.form('company_sector')
-		
-add_company(name,company_id , cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector)
+    name = request.form('name')
+    company_id = request.form('company_id')
+    cutoff_gpa = request.form('cutoff_gpa')
+    register_date = request.form('register_date')
+    test_date = request.form('test_date')
+    interview_date = request.form('interview_date')
+    tier = request.form('tier')
+    website = request.form('website')
+    postal_address = request.form('postal_address')
+    company_sector = request.form('company_sector')
+        
+# add_company(name,company_id , cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector)

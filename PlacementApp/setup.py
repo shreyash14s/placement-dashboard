@@ -12,6 +12,7 @@ setup(
         'sqlalchemy_utils',
         'openpyxl',
         'passlib',
-        'PyMySQL'
+        'PyMySQL',
+        'request'
     ],
 )

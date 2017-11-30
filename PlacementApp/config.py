@@ -32,3 +32,5 @@ CSRF_SESSION_KEY = "secret"
 
 # Secret key for signing cookies
 SECRET_KEY = "something_toO_secret"
+
+CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSI-y4VR2nhrpmlUsIu1DVajdeUyD8E-LjQJDWkro6_lbEOJjkAXT4uUv3wvOtEmJmalPJr30cqa4sS/pub?output=csv'
