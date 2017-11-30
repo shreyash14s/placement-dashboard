@@ -68,7 +68,7 @@ def get_student_details_view(usn):
     return str(details)
 
 @fapp.route("/dashboard/remove_student/<usn>", methods=['GET'])
-@login_required_placement
+# @login_required_placement
 def remove_student(usn):
     stat = remove_student(usn)
     return stat
