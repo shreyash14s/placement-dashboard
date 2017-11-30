@@ -74,13 +74,13 @@ def  login_placementuser(name,password):
     Sends true if login successful.
     '''
     pass
-def add_company(name, company_id, test_date, interview_date, \
-            tier, company, website, postal_address, company_sector):
-    '''
-    Note ***** Add the cutoff cgpa parameter
-    Sends true if company is added successfuly.
-    '''
-    pass
+
+def add_company(name, company_id, cutoff_gpa, register_date, test_date, interview_date, \
+            tier, website, postal_address, company_sector):
+    c = Company(name=name, company_id=company_id,cutoff_gpa=cutoff_gpa, test_date=test_date,\ register_date=register_date,interview_date=interview_date, tier=tier,website=website,\ postal_address=postal_address, company_sector=company_sector)
+    db.session.add(c)
+    db.session.commit()
+
 def remove_company(name, company_id, test_date, interview_date, \
             tier, company, website, postal_address, company_sector):
     '''
