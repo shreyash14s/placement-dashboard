@@ -81,15 +81,15 @@ def get_companies():
      
 @fapp.route("/dashboard/add_company", methods=['POST'])
 def add_comp():
-    name = request.form('name')
-    company_id = request.form('company_id')
+	name = request.form('name')
+	company_id = request.form('company_id')
 	cutoff_gpa = request.form('cutoff_gpa')
-	register_date = request.form('register_date ')
+	register_date = request.form('register_date')
 	test_date = request.form('test_date')
 	interview_date = request.form('interview_date')
 	tier = request.form('tier')
 	website = request.form('website')
 	postal_address = request.form('postal_address')
 	company_sector = request.form('company_sector')
-	
-    add_company(name, company_id, cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector)
+		
+add_company(name,company_id , cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector)
