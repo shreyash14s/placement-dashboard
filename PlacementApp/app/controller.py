@@ -71,11 +71,10 @@ def remove_company(name, company_id, test_date, interview_date, \
     Sends true if company is removed successfuly.
     '''
     pass
-def remove_studet(usn):
-    ''' 
-    PlacementUSer can remove a student if they want to block him
-    '''
-    pass
+def remove_student(usn):
+     Student.query.filter_by(Student.usn=usn).delete()
+     return "Student deleted"
+
 def make_announcement(message):
     '''
     Allows the placement user to make announcement to all the students
