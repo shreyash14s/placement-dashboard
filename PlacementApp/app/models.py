@@ -74,7 +74,6 @@ class Company(db.Model):
         self.test_date = test_date
         self.interview_date = interview_date
         self.tier = tier
-        self.company = company
         self.website = website
         self.postal_address = postal_address
         self.company_sector = company_sector
@@ -92,9 +91,9 @@ class Registrations(db.Model):
     student = relationship('Student', foreign_keys='Registrations.usn')
     company = relationship('Company', foreign_keys='Registrations.company_id')
 
-    def __init__(self, usn=None, cgpa=None):
+    def __init__(self, usn=None, company_id=None):
         self.usn = usn
-        self.cgpa = cgpa
+        self.company_id = company_id
 
     def __repr__(self):
         return '<CGPA %s = %s>' % (self.usn, self.cgpa)

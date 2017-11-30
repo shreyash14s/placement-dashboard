@@ -1,6 +1,7 @@
 from app.models import StudentUser
 from app.models import PlacementUser
 from app.models import Company, Registrations, Student
+from app.database import db
 def signup_student(user, pwd):
     '''
     Create new student user.
@@ -17,9 +18,12 @@ def login_student(user, pwd):
     return False
 
 def get_all_companies():
-    q = Company.query.order_by(Company.company_id).all()
-    comp_details = [q.name, q.company_id, q.register_date,q.cutoff_gpa, q.test_date, q.interview_date, q.tier, q.company, q.website, q.postal_address, q.company_sector ]
-    return comp_details
+    comp = Company.query.order_by(Company.company_id).all()
+    l = []
+    for q in comp:
+        comp_details = [q.name, q.company_id, q.register_date, q.cutoff_gpa, q.test_date, q.interview_date, q.tier, q.website, q.postal_address, q.company_sector ]
+        l.append(comp_details)
+    return l
     
 def get_student_details(usn):
     q = Student.query.get(usn)
@@ -30,7 +34,10 @@ def register_for(usn, company_id):
     '''
     Register the student for company.
     '''
-    pass
+    r = Registrations(usn=usn, company_id=company_id)
+    db.session.add(r)
+    db.session.commit()
+
 def update_student_details(usn):
     '''
     Sends true if update successful.
@@ -71,7 +78,7 @@ def remove_company(name, company_id, test_date, interview_date, \
     '''
     pass
 def remove_student(usn):
-     Student.query.filter_by(Student.usn=usn).delete()
+     Student.query.filter_by(usn=usn).delete()
      return "Student deleted"
 
 def make_announcement(message):

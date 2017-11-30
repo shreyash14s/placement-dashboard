@@ -10,7 +10,6 @@ from flask import send_from_directory, render_template, flash, redirect, \
 from config import EXCEL_FILES_DIR
 from functools import wraps
 
-
 def login_required_placement(f):
     @wraps(f)
     def wrap(*args, **kwargs):

@@ -1,6 +1,7 @@
 from app import fapp
 from app.query import gen_excel_sheets
 from app.controller import login_student, login_placementuser, register_for, get_student_details, remove_student, get_all_companies
+from app.views_placement import login_required_placement
 from flask import send_from_directory, render_template, flash, redirect, \
         url_for, session, request
 # from flask.ext.login import login_user, logout_user, current_user, login_required
@@ -46,17 +47,19 @@ def dashboard():
     return render_template('sidebar.html')
 
 @fapp.route('/dashboard/register_for', methods=['GET'])
-@login_required_student
+# @login_required_student
 def register_company():
     usn = request.args.get('usn')
     company_id = request.args.get('company_id')
-    if usn and company_id and usn == session['username']:
-        try:
-            register_for(usn, company_id)
-            flash('Successfully registered!')
-        except:
-            flash('Failed to register')
-    return redirect(url_for('dashboard'))
+    register_for(usn, company_id)
+    # if usn and company_id and usn == session['username']:
+    #     try:
+    #         register_for(usn, company_id)
+    #         flash('Successfully registered!')
+    #     except:
+    #         flash('Failed to register')
+    # return redirect(url_for('dashboard'))
+    return 'ok'
 
 @fapp.route("/dashboard/student_details/<usn>", methods=['GET'])
 @login_required_student
@@ -71,7 +74,7 @@ def remove_student(usn):
     return stat
 
 @fapp.route("/dashboard/get_companies", methods=['GET'])
-@login_required_student
+# @login_required_student
 def get_companies():
     comp_details = get_all_companies()
     return str(comp_details)
