@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>BookKart Admin Dashboard</title>
+    <title>Placement Officer Dashboard</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script>
-            
             $(document).ready(function(){
                 $.ajax({
                     type: 'GET',
@@ -49,7 +48,7 @@
                             
                             tempdiv = document.createElement("div");
                             tempbutton=document.createElement('button');
-                            
+                            tempdiv.style=" background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.2);";                    
                             tempbutton.type="submit";
                             tempbutton.className="btn btn-default";
                             tempbutton.id="btnauth";
@@ -57,10 +56,17 @@
                             tempbutton.innerHTML = "Authenticate";
                             tempdiv.innerHTML="Name: "+jsonobj[stud]['name'] + ", USN: " + jsonobj[stud]['usn'];
                             console.log(jsonobj[stud].name);
-                            tempdiv.appendChild(tempbutton);
-                        document.getElementById("parent").appendChild(tempdiv);
-                        }
-                        tempbutton.onclick=function(){
+                            tempbutton.className = "btn-danger";
+                            tempbutton.onmouseover=function(e){
+                                e.target.className = "btn-success";
+                            }
+                            tempbutton.onmouseout=function(e){
+                                e.target.className = "btn-danger";
+                            }
+                            tempbutton.onclick=function(e){
+                            e.target.innerHTML = "Authenticated";
+                            e.target.disabled = true;
+                            e.target.className = "btn-default";
                             alert("ok");
                             $.ajax({
                                 type:'POST',
@@ -69,11 +75,15 @@
                                 contentType:'application/json',
                                 data: jsonobj[stud],
                                 success: function(data){
-                                    
+                                
                                 },
                                 error:function(exception){alert('Exception:'+exception);}
                             });
                         }
+                            tempdiv.appendChild(tempbutton);
+                            document.getElementById("parent").appendChild(tempdiv);
+                        }
+                        
                        
                         
                     },
@@ -145,7 +155,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Authenticate Students</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Authenticate Students</a>
                         </li>
                         
                         <li>
