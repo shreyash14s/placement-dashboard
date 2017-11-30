@@ -44,7 +44,7 @@
               <a class="nav-link js-scroll-trigger" href="#download">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Register</a>
+              <a class="nav-link js-scroll-trigger" href="#cta">Register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
@@ -81,15 +81,17 @@
         </div>
       </div>
     </header>
-  
+
     <section class="download bg-primary text-center" id="download">
       <div class="container">
         <div class="row">
           <div class="col-md-8 mx-auto">
-            <h2 class="section-heading">We will have a form here</h2>
-            <p>Our app will be available on any mobile device!</p>
-            <p>username&nbsp;<input type = "text"></p>
-            <p>password&nbsp;<input type = "text"></p>
+            <h2 class="section-heading">Login</h2>
+            <form action="/login" method="POST">
+              <p><input type = "text" placeholder="USN" name="username" required></p>
+              <p><input type = "text" placeholder="Password" name="password" required></p>
+              <p><input type = "submit" class="btn-primary" value="Login"></p>
+            </form>
             <div class="badges">
               <!-- <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
               <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a> -->
@@ -99,74 +101,13 @@
       </div>
     </section>
 
-    <section class="features" id="features">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2></h2>
-          <p class="text-muted"></p>
-          <hr>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 my-auto">
-            <div class="device-container">
-              <div class="device-mockup iphone6_plus portrait black">
-                <div class="device">
-                  <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                  </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8 my-auto">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-screen-smartphone text-primary"></i>
-                    <h3></h3>
-                    <p class="text-muted"></p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-camera text-primary"></i>
-                    <h3></h3>
-                    <p class="text-muted"></p>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-present text-primary"></i>
-                    <h3></h3>
-                    <p class="text-muted"></p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-lock-open text-primary"></i>
-                    <h3></h3>
-                    <p class="text-muted"></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="cta">
+
+    <section class="cta" id="cta">
       <div class="cta-content">
         <div class="container">
           <h2>Stop filling forms.<br>Get placed</h2>
-          <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
+          <a href="https://goo.gl/forms/rfV98sjOR0Rb2l412" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
         </div>
       </div>
       <div class="overlay"></div>
@@ -199,7 +140,6 @@
 
     <footer>
       <div class="container">
-        <p>&copy; 2017 Start Bootstrap. All Rights Reserved.</p>
         <ul class="list-inline">
           <li class="list-inline-item">
             <a href="#">Privacy</a>
