@@ -58,21 +58,8 @@ def register_company():
             flash('Failed to register')
     return redirect(url_for('dashboard'))
 
-@fapp.route('/dashboard/register_for', methods=['GET'])
-@login_required_student
-def register_company():
-    usn = request.args.get('usn')
-    company_id = request.args.get('company_id')
-    if usn and company_id and usn == session['username']:
-        try:
-            register_for(usn, company_id)
-            flash('Successfully registered!')
-        except:
-            flash('Failed to register')
-    return redirect(url_for('dashboard'))
-
 @fapp.route("/dashboard/student_details/<usn>", methods=['GET'])
 @login_required_student
 def get_student_details_view(usn):
     details = get_student_details(usn)
-    return details
+    return str(details)

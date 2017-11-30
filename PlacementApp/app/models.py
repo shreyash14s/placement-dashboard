@@ -18,9 +18,11 @@ class Stream(enum.Enum):
     IS = 'IS'
     EEE = 'EEE'
     ECE = 'ECE'
-    ME = 'ME'
+    EME = 'EME'
     BT = 'BT'
     CV = 'CV'
+    BBA = 'BBA'
+    MBA = 'MBA'
 
 class Student(db.Model):
     __tablename__ = 'student'
@@ -56,6 +58,7 @@ class Company(db.Model):
     name = Column(String(120), nullable=False)
     company_id = Column(Integer, primary_key=True)
     cutoff_gpa = Column(Float, CheckConstraint('cutoff_gpa>=0 and cutoff_gpa<=10'))
+    register_date = Column(Date, nullable=False)
     test_date = Column(Date, nullable=False)
     interview_date = Column(Date, nullable=False)
     tier = Column(Integer, CheckConstraint('tier>=1 and tier<=3'))

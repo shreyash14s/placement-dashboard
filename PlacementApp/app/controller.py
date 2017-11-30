@@ -23,7 +23,7 @@ def get_all_companies():
     pass
 
 def get_student_details(usn):
-    q = Students.query.get(usn)
+    q = Student.query.get(usn)
     stud_details = [q.usn, q.name, q.email_id, q.tenth_percentage, q.twelfth_percentage, q.cgpa]
     return stud_details
 
