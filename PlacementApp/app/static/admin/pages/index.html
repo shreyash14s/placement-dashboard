@@ -39,10 +39,10 @@
             $(document).ready(function(){
                 $.ajax({
                     type: 'GET',
-                    url: "/",
+                    url: "/placement/get_new_registrants",
                     datatype: 'json',
                     success: function(data){
-                        var jsonobj= JSON.parse('[{"timestamp": "11/30/2017 14:38:04", "name": "tom", "usn": "01fb14ecs205", "stream": "CSE", "age": "21", "per10": "81", "per12": "88", "CGPA": "8.5", "email_id": "pesplacementhub@gmail.com", "resume_link": "http://google.com"}]');
+                        var jsonobj= JSON.parse(data);
                         
                         for(stud in jsonobj)
                         {
