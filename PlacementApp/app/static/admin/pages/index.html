@@ -48,14 +48,35 @@
                             
                             tempdiv = document.createElement("div");
                             tempbutton=document.createElement('button');
-                            tempdiv.style=" background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.2);";                    
+                            tempdiv.style="padding:1.2%";                    
                             tempbutton.type="submit";
                             tempbutton.className="btn btn-default";
                             tempbutton.id="btnauth";
                             tempbutton.value="Authenticate";
                             tempbutton.innerHTML = "Authenticate";
-                            tempdiv.innerHTML="Name: "+jsonobj[stud]['name'] + ",&emsp;&emsp;&emsp;USN: " + jsonobj[stud]['usn'] +"&emsp;&emsp;&emsp;"+ jsonobj[stud]['CGPA']+"&emsp;&emsp;&emsp;";
+                            // tempdiv.innerHTML="Name: "+jsonobj[stud]['name'] + ",&emsp;&emsp;&emsp;USN: " + jsonobj[stud]['usn'] +"&emsp;&emsp;&emsp;"+ jsonobj[stud]['CGPA']+"&emsp;&emsp;&emsp;";
                             // console.log(jsonobj[stud].name);
+
+                            tempdiv1 = document.createElement("div");
+                            tempdiv1.style=" background-color: rgb(0, 0, 0); background-color: rgba(0, 255, 255, 0.2);"; 
+                            tempdiv1.className = "col-sm-3"
+                            tempdiv1.innerHTML = jsonobj[stud]['name'];
+
+                            tempdiv2 = document.createElement("div");
+                            tempdiv2.style=" background-color: rgb(0, 0, 0); background-color: rgba(255, 255, 0, 0.2);"; 
+                            tempdiv2.className = "col-sm-3"
+                            tempdiv2.innerHTML = jsonobj[stud]['usn'];
+
+                            tempdiv3 = document.createElement("div");
+                            tempdiv3.style=" background-color: rgb(0, 0, 0); background-color: rgba(255, 0, 255, 0.2);"; 
+                            tempdiv3.className = "col-sm-3"
+                            tempdiv3.innerHTML = jsonobj[stud]['CGPA'];
+
+                            tempdiv4 = document.createElement("div");
+                            // tempdiv4.style=" background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.2);"; 
+                            tempdiv4.className = "col-sm-3"
+                            
+
                             tempbutton.className = "btn-danger";
                             tempbutton.onmouseover=function(e){
                                 e.target.className = "btn-success";
@@ -67,7 +88,7 @@
                             e.target.innerHTML = "Authenticated";
                             e.target.disabled = true;
                             e.target.className = "btn-default";
-                            e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                            e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement)
                             if(document.getElementById("parent").childElementCount == 0)
                             {
                                 tempdiv1 = document.createElement("div");
@@ -75,7 +96,7 @@
                                 tempdiv1.innerHTML="No new records to Authenticate";
                                 document.getElementById("parent").appendChild(tempdiv1);
                             }
-                            alert("ok");
+                            // alert("ok");
                             $.ajax({
                                 type:'POST',
                                 url: "/placement/add_student",
@@ -85,10 +106,14 @@
                                 success: function(data){
                                 
                                 },
-                                error:function(exception){alert('Exception:'+exception);}
+                                // error:function(exception){alert('Exception:'+exception);}
                             });
                         }
-                            tempdiv.appendChild(tempbutton);
+                            tempdiv4.appendChild(tempbutton);
+                            tempdiv.appendChild(tempdiv1);
+                            tempdiv.appendChild(tempdiv2);
+                            tempdiv.appendChild(tempdiv3);
+                            tempdiv.appendChild(tempdiv4);
                             document.getElementById("parent").appendChild(tempdiv);
                         }
                         
