@@ -13,6 +13,6 @@ setup(
         'openpyxl',
         'passlib',
         'PyMySQL',
-        'request'
+        'requests'
     ],
 )
