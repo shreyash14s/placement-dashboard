@@ -65,9 +65,9 @@
                             $.ajax({
                                 type:'POST',
                                 url: "/placement/add_student",
-                                datatype: 'text',
-                                contentType:'application/json',
-                                data: jsonobj[stud],
+                                dataType: 'text',
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify(jsonobj[stud]),
                                 success: function(data){
                                     
                                 },
