@@ -33,7 +33,7 @@ class Student(db.Model):
     cgpa = Column(Float, CheckConstraint('cgpa>0 and cgpa<=10.0'))
     email_id = Column(String(50), nullable=False)
     resume_link = Column(String(320))
-    status_placed = Column(Sring(4))
+    status_placed = Column(String(4))
     def __init__(self, name=None, usn=None, stream=None, age=None, tenth=None, \
             twelfth=None, cgpa=None, email=None, resume=None, status=None):
         self.name = name
