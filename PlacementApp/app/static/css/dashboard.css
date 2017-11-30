@@ -1,0 +1,6 @@
+.dashboard
+{
+  background: url("../img/bg-pattern.png"), white;
+  background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, white, black);
+  background: url("../img/bg-pattern.png"), linear-gradient(to left, white, black);
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <style type="text/css">
+        .one-edge-shadow {
+          box-shadow: 2px 0px 2px 0px grey;
+        }
+    </style>
+
+</head>
+
+<body class="dashboard" onload="$('#menu-toggle').click()">
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" style="background-color: black;" class="one-edge-shadow">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" style="background-color: white">
+                	<div>
+                    		<img src="pes_logo.png" width="100px">
+                		</div>
+                	</li>
+                	<li class="sidebar-brand">
+                    <a href="#">
+                        Placement Hub
+                    </a> 
+                    </li>
+                </li>
+                <!-- <li>
+                    <a href="sidebar.html">Dashboard</a>
+                </li> -->
+                <li>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">User profile</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div class="row">
+	        <div id="page-content-wrapper" style="background-color: white;">
+	            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" >
+				<!-- <img class="img-thumbnail" src="threelines.png" style="max-height: 100%; max-width: 100%"> -->
+				</a>
+	        	<h1>Companies</h1>
+	        </div>
+	    </div>
+        <!-- /#page-content-wrapper -->
+         
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled", 0, 0);
+    });
+    </script>
+
+
+
+</body>
+
+</html>

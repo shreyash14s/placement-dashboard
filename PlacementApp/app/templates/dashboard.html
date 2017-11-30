@@ -1,240 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>New Age - Start Bootstrap Theme</title>
+    <link href="css/dashboard.css" rel="stylesheet">
+    <title>Simple Sidebar - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
-
     <!-- Custom styles for this template -->
-    <link href="css/new-age.min.css" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
 
-  </head>
+    <style type="text/css">
+        .one-edge-shadow {
+          box-shadow: 2px 0px 2px 0px grey;
+        }
+    </style>
 
-  <body id="page-top">
+</head>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Placement Hub</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-          </ul>
+<body class="dashboard" onload="$('#menu-toggle').click()">
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" style="background-color: black;" class="one-edge-shadow">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" style="background-color: white">
+                	<div>
+                    		<img src="pes_logo.png" width="100px">
+                		</div>
+                	</li>
+                	<li class="sidebar-brand">
+                    <a href="#">
+                        Placement Hub
+                    </a> 
+                    </li>
+                </li>
+                <!-- <li>
+                    <a href="sidebar.html">Dashboard</a>
+                </li> -->
+                <li>
+                    <a href="#">User profile</a>
+                </li>
+                <li>
+                    <a href="companies.html">Companies</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+            </ul>
         </div>
-      </div>
-    </nav>
+        <!-- /#sidebar-wrapper -->
 
-    <header class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
-              <h1 class="mb-5">PES University Placement Portal</h1>
-              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Login</a>
-            </div>
-          </div>
-          <div class="col-lg-5 my-auto">
-            <div class="device-container">
-              <div class="device-mockup iphone6_plus portrait white">
-                <div class="device">
-                  <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                  </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+        <!-- Page Content -->
+        <div class="row">
+	        <div id="page-content-wrapper" style="background-color: white;">
+	            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle" >
+				<!-- <img class="img-thumbnail" src="threelines.png" style="max-height: 100%; max-width: 100%"> -->
+				</a>
+	        	<h1>Dashboard</h1>
+	        </div>
+	    </div>
+        <!-- /#page-content-wrapper -->
+         <section class="features" id="features">
+	      <div class="container-fluid" style="padding: 1% 0%;">
+	        <div class = "row" style="padding: 5% 0%;">
+        	
+        		<div class="col-sm-1">
+	        	</div>
+
+	        	<div class="card text-white bg-success col-sm-4">
+	        		<div class="card-header">Companies</div>
+				 	<div class="card-body">
+				    <!-- <h4 class="card-title">Success card title</h4>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+				  </div>
+	        	</div>
+
+	        	<div class="col-sm-1">
+	        	</div>
+        	
+	        	<div class="card text-white bg-danger col-sm-4">
+	        		<div class="card-header">Events</div>
+				 	<div class="card-body">
+				    <!-- <h4 class="card-title">Success card title</h4>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+				  </div>
+	        	</div>
+
+	        	<div class="col-sm-1">
+	        	</div>
+        	
+        </div>
+        <div class = "row" style="padding: 1% 0%;">
+            
+                <div class="col-sm-1"">
+                </div>
+
+                <div class="card text-white bg-success col-sm-4">
+                    <div class="card-header">Announcements</div>
+                    <div class="card-body">
+                    <!-- <h4 class="card-title">Success card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+
+                <div class="col-sm-1">
+                </div>
+            
+                <div class="card text-white bg-danger col-sm-4">
+                    <div class="card-header">Alumni</div>
+                    <div class="card-body">
+                   <!--  <h4 class="card-title">Success card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                  </div>
+                </div>
+
+                <div class="col-sm-1">
+                </div>
+            
         </div>
-      </div>
-    </header>
-
-    <section class="download bg-primary text-center" id="download">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 mx-auto">
-            <h2 class="section-heading">We will have a form here</h2>
-            <p>Our app will be available on any mobile device!</p>
-            <p>username&nbsp;<input type = "text"></p>
-            <p>password&nbsp;<input type = "text"></p>
-            <div class="badges">
-              <!-- <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
-              <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a> -->
-            </div>
-          </div>
-        </div>
-      </div>
+   	 </div>
     </section>
-
-    <section class="features" id="features">
-      <div class="container">
-		<div class = "row">
-			<div class="col-sm-6">
-			<div class="card text-white bg-primary mb-3" style="/*max-width: 20rem;*/width: 50%;
-  margin: 0 auto;">
-				  <div class="card-header">Header</div>
-				  <div class="card-body">
-				    <h4 class="card-title">Primary card title</h4>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  </div>
-				</div>
-			</div>
-			<div class="col-sm-6">
-			<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-			  <div class="card-header">Header</div>
-			  <div class="card-body">
-			    <h4 class="card-title">Secondary card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-		</div>	
-		</div>
-		<div class = "row">
-			<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
-			  <div class="card-header">Header</div>
-			  <div class="card-body">
-			    <h4 class="card-title">Success card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-			<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
-			  <div class="card-header">Header</div>
-			  <div class="card-body">
-			    <h4 class="card-title">Danger card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-		</div>
-		<div class = "row">
-			<div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
-			  <div class="card-header">Header</div>
-			  <div class="card-body">
-			    <h4 class="card-title">Warning card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-			  <div class="card-header">Header</div>
-			  <div class="card-body">
-			    <h4 class="card-title">Info card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-		</div>
-		<div class = "row">
-			<div class="card bg-light mb-3" style="max-width: 20rem;">
-			  <div class="card-header">Header</div>
-			  <div class="card-body">
-			    <h4 class="card-title">Light card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-			<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-			  <div class="card-header">Header</div>
-			  <div class="card-body">
-			    <h4 class="card-title">Dark card title</h4>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			  </div>
-			</div>
-		</div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="cta-content">
-        <div class="container">
-          <h2>Stop filling forms.<br>Get placed</h2>
-          <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
-        </div>
-      </div>
-      <div class="overlay"></div>
-    </section>
-
-    <section class="contact bg-primary" id="contact">
-      <div class="container">
-        <!-- <h2>We
-          <i class="fa fa-heart"></i>
-          new friends!</h2>
-        <ul class="list-inline list-social">
-          <li class="list-inline-item social-twitter">
-            <a href="#">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-facebook">
-            <a href="#">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-google-plus">
-            <a href="#">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-        </ul> -->
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2017 Start Bootstrap. All Rights Reserved.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Privacy</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Terms</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">FAQ</a>
-          </li>
-        </ul>
-      </div>
-    </footer>
+    </div>
+    <!-- /#wrapper -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled", 0, 0);
+    });
+    </script>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/new-age.min.js"></script>
 
-  </body>
+
+</body>
 
 </html>
