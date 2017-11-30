@@ -1,6 +1,6 @@
 from app import fapp
 from app.query import gen_excel_sheets
-from app.controller import login_student, login_placementuser, register_for, get_student_details, remove_student
+from app.controller import login_student, login_placementuser, register_for, get_student_details, remove_student, get_all_companies
 from flask import send_from_directory, render_template, flash, redirect, \
         url_for, session, request
 # from flask.ext.login import login_user, logout_user, current_user, login_required
@@ -65,7 +65,14 @@ def get_student_details_view(usn):
     return str(details)
 
 @fapp.route("/dashboard/remove_student/<usn>", methods=['GET'])
-@login_required_student
+@login_required_placement
 def remove_student(usn):
     stat = remove_student(usn)
     return stat
+
+@fapp.route("/dashboard/get_companies", methods=['GET'])
+@login_required_student
+def get_companies():
+    comp_details = get_all_companies()
+    return str(comp_details)
+     
