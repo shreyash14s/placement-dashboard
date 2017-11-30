@@ -17,11 +17,10 @@ def login_student(user, pwd):
     return False
 
 def get_all_companies():
-    '''
-    Returns all the companies list available for registration.
-    '''
-    pass
-
+    q = Company.query.order_by(Company.company_id).all()
+    comp_details = [q.name, q.company_id, q.register_date,q.cutoff_gpa, q.test_date, q.interview_date, q.tier, q.company, q.website, q.postal_address, q.company_sector ]
+    return comp_details
+    
 def get_student_details(usn):
     q = Student.query.get(usn)
     stud_details = [q.usn, q.name, q.email_id, q.tenth_percentage, q.twelfth_percentage, q.cgpa]
