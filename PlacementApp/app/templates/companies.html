@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
 
@@ -21,7 +21,55 @@
           box-shadow: 2px 0px 2px 0px grey;
         }
     </style>
+  <script>
+    
+    $(document).ready(function(){
+        $.ajax({
+            type: 'GET',
+            url: "/dashboard/get_companies",
+            dataType: 'json',
+            success: function(data){
+                var jsonobj= JSON.parse(data);
+                alert(jsonobj[0]);
+                for(company in jsonobj)
+                {
+                    
+                    tempdiv = document.createElement("div");
+                    tempbutton=document.createElement('button');
+                    
+                    tempbutton.type="submit";
+                    tempbutton.className="btn btn-default";
+                    tempbutton.id="btnregister";
+                    tempbutton.value="Register";
+                    tempbutton.innerHTML = "Register";
+                    tempdiv.innerHTML=" Comapny Name: "+jsonobj[company]['name'] ;
+                    console.log("Hellp"+jsonobj[company]['name']);
+                    tempdiv.appendChild(tempbutton);
+                document.getElementById("parent").appendChild(tempdiv);
+                }
+                // getElementById("btnregister").onclick=function(){
+                    
+                //     url="/dashboard/register_for"+"?company_id="+jsonobj[company]['company_id'];
+                //     $.ajax({
+                //         type:'GET',
+                //         url: url,
+                //         success: function(data){
+                //             alert("ok");
+                //         },
+                //         error:function(exception){alert('Exception:'+exception);}
+                //     });
+                // }
+               
+                
+            },
+            error:function(exception){alert('Exception:'+exception);}
+            });
+        }); 
 
+
+
+
+    </script>
 </head>
 
 <body class="dashboard" onload="$('#menu-toggle').click()">
