@@ -79,3 +79,17 @@ def get_companies():
     comp_details = get_all_companies()
     return str(comp_details)
      
+@fapp.route("/dashboard/add_company", methods=['GET'])
+def add_comp():
+    name = request.args.get('name')
+    company_id = request.args.get('company_id')
+	cutoff_gpa = request.args.get('cutoff_gpa')
+	register_date = request.args.get('register_date ')
+	test_date = request.args.get('test_date')
+	interview_date = request.args.get('interview_date')
+	tier = request.args.get('tier')
+	website = request.args.get('website')
+	postal_address = request.args.get('postal_address')
+	company_sector = request.args.get('company_sector')
+	
+    add_company(name, company_id, cutoff_gpa, register_date, test_date, interview_date, tier, website,\ postal_address, company_sector)
