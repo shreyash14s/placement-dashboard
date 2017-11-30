@@ -128,6 +128,19 @@ class StudentUser(db.Model):
     def __repr__(self):
         return '<StudentUser %s>' % (self.usn)
 
+    def is_authenticated(self):
+        return True
+ 
+    def is_active(self):
+        return True
+ 
+    def is_anonymous(self):
+        return False
+ 
+    def get_id(self):
+        # return unicode(self.id)
+        return self.usn
+
 class PlacementUser(db.Model):
     __tablename__ = 'placement_user'
     name = Column(String(20), primary_key=True, nullable=False)
@@ -140,6 +153,26 @@ class PlacementUser(db.Model):
     def __init__(self, name=None, passwd=None):
         self.name = name
         self.password = passwd
+
+    def __repr__(self):
+        return '<PlacementUser %s>' % (self.usn)
+
+class Role(enum.Enum):
+    FTE_INT = 0
+    FTE = 1
+    INT = 2
+    INT_2 = 3
+
+class Offered(db.Model):
+    __tablename__ = 'offered'
+    usn = Column(String(15), ForeignKey('student.usn'), primary_key=True, nullable=False)
+    company_id = Column(Integer, ForeignKey('company.company_id'), primary_key=True)
+    role = Column(Enum(Role))
+    
+    def __init__(self, usn=None, company_id=None, role=None):
+        self.usn = usn
+        self.company_id = company_id
+        self.role = role
 
     def __repr__(self):
         return '<PlacementUser %s>' % (self.usn)
