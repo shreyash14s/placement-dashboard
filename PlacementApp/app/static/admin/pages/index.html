@@ -54,8 +54,8 @@
                             tempbutton.id="btnauth";
                             tempbutton.value="Authenticate";
                             tempbutton.innerHTML = "Authenticate";
-                            tempdiv.innerHTML="Name: "+jsonobj[stud]['name'] + ", USN: " + jsonobj[stud]['usn'];
-                            console.log(jsonobj[stud].name);
+                            tempdiv.innerHTML="Name: "+jsonobj[stud]['name'] + ",&emsp;&emsp;&emsp;USN: " + jsonobj[stud]['usn'] +"&emsp;&emsp;&emsp;"+ jsonobj[stud]['CGPA']+"&emsp;&emsp;&emsp;";
+                            // console.log(jsonobj[stud].name);
                             tempbutton.className = "btn-danger";
                             tempbutton.onmouseover=function(e){
                                 e.target.className = "btn-success";
@@ -67,6 +67,14 @@
                             e.target.innerHTML = "Authenticated";
                             e.target.disabled = true;
                             e.target.className = "btn-default";
+                            e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                            if(document.getElementById("parent").childElementCount == 0)
+                            {
+                                tempdiv1 = document.createElement("div");
+                                tempdiv1.style=" background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.2);";                    
+                                tempdiv1.innerHTML="No new records to Authenticate";
+                                document.getElementById("parent").appendChild(tempdiv1);
+                            }
                             alert("ok");
                             $.ajax({
                                 type:'POST',
@@ -95,7 +103,7 @@
 			});
         });
         
-        
+
         
         
     </script>
