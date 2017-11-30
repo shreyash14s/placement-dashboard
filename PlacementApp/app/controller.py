@@ -11,7 +11,10 @@ def login_student(user, pwd):
     '''
     Returns True if the username and password match.
     '''
-    pass
+    s = StudentUser.query.filter_by(usn=user)
+    if s:
+        return s.password == pwd
+    return False
 
 def get_all_companies():
     '''
