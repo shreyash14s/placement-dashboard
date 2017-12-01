@@ -26,3 +26,14 @@ def init_db():
     # Base.metadata.create_all(bind=engine)
     # db.drop_all()
     db.create_all()
+
+def load_data():
+    import app.controller as control
+    import csv
+
+    init_db()
+
+    fieldnames = ("name", "usn", "stream", "age", "per10", "per12", "cgpa", "email", "resume")
+    with open('../studentsdata.csv') as f:
+        for row in csv.DictReader(f, fieldnames):
+            control.add_student(**row)

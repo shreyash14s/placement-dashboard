@@ -62,10 +62,10 @@ def placement_login():
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('placement_dashboard'))
 
-@fapp.route('/placement/dashboard')
-@login_required_placement
-def placement_dashboard():
-    return render_template('404.html') # Placement dashboard
+# @fapp.route('/placement/dashboard')
+# @login_required_placement
+# def placement_dashboard():
+#     return render_template('404.html') # Placement dashboard
 
 @fapp.route("/placement/generate/<comp_id>", methods=['GET'])
 # @login_required_placement
@@ -83,8 +83,37 @@ def get_new_registrants():
 @fapp.route("/placement/add_student", methods=['POST'])
 # @login_required_placement
 def add_student():
-    data = json.loads(request.data)
+    data = request.get_json()
+    # data = request.data
+    print('data stu', data)
+    # control.add_student(**data)
     control.add_student(data['usn'], data['name'], data['stream'],
                 data['age'], data['per10'], data['per12'], data['CGPA'],
                 data['email_id'], data['resume_link'])
     return ""
+
+@fapp.route("/placement/add_company", methods=['POST'])
+# @login_required_placement
+def add_company():
+    # data = json.loads(request.data)
+    data = request.get_json()
+    print('data com', data)
+    b = control.add_student(data['usn'], data['name'], data['stream'],
+                data['age'], data['per10'], data['per12'], data['CGPA'],
+                data['email_id'], data['resume_link'])
+    if b:
+        return '{"status": "ok"}'
+    return ""
+
+# @fapp.route("/dashboard/add_company", methods=['POST'])
+# def add_comp():
+#     name = request.form('name')
+#     company_id = request.form('company_id')
+#     cutoff_gpa = request.form('cutoff_gpa')
+#     register_date = request.form('register_date')
+#     test_date = request.form('test_date')
+#     interview_date = request.form('interview_date')
+#     tier = request.form('tier')
+#     website = request.form('website')
+#     postal_address = request.form('postal_address')
+#     company_sector = request.form('company_sector')

@@ -1,4 +1,5 @@
-from app.models import StudentUser, PlacementUser, Company, Registrations, Student, Offered
+from app.models import StudentUser, PlacementUser, Company, \
+        Registrations, Student, Offered
 from app.database import db
 from datetime import date
 from config import CSV_URL
@@ -6,6 +7,7 @@ import requests
 import csv
 import json
 import io
+import sys
 
 def signup_student(user, pwd):
     '''
@@ -88,15 +90,17 @@ def login_placementuser(name,password):
         return s.password == password
     return False
 
-def add_company(name, company_id, cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector):
-    c = Company(name=name, company_id=company_id,cutoff_gpa=cutoff_gpa, test_date=test_date,register_date=register_date,interview_date=interview_date, tier=tier,website=website, postal_address=postal_address, company_sector=company_sector)
+def add_company(name, company_id, cutoff_gpa, register_date, test_date,
+            interview_date, tier, website, postal_address, company_sector):
+    c = Company(name=name, company_id=company_id, cutoff_gpa=cutoff_gpa,
+                test_date=test_date, register_date=register_date,
+                interview_date=interview_date, tier=tier, website=website,
+                postal_address=postal_address, company_sector=company_sector)
     db.session.add(c)
     db.session.commit()
 
-def remove_company(name, company_id, test_date, interview_date, \
-            tier, company, website, postal_address, company_sector):
+def remove_company(company_id):
     '''
-    Note ***** Add the cutoff cgpa parameter
     Sends true if company is removed successfuly.
     '''
     pass
@@ -128,21 +132,27 @@ def get_new_registrants():
     Get new registrants for verification.
     '''
     d = requests.get(CSV_URL)
-    # Timestamp	Name	USN	Stream	Age	10th percentage	12th percentage	CGPA Score	Email ID	Resume Link
-    fieldnames = ("timestamp", "name", "usn", "stream", "age", "per10", "per12", "CGPA", "email_id", "resume_link")
+    fieldnames = ("timestamp", "name", "usn", "stream", 
+            "age", "per10", "per12", "CGPA", "email_id", "resume_link")
     l = []
     reader = csv.DictReader(io.StringIO(d.text), fieldnames)
     for row in reader:
-        if not is_in_db(row['usn'].upper()):
+        # if not is_in_db(row['usn'].upper()):
             l.append(row)
     return l[1:]
 
 def add_student(usn, name, stream, age, per10, per12, cgpa, email, resume):
-    age = int(age)
-    per10 = float(per10)
-    per12 = float(per12)
-    cgpa = float(cgpa)
-    s = Student(usn=usn, name=name, stream=stream, age=age, tenth=per10, 
-                twelfth=per12, cgpa=cgpa, email=email, resume=resume)
-    db.session.add(s)
-    db.session.commit()
+    try:
+        age = int(age)
+        per10 = float(per10)
+        per12 = float(per12)
+        cgpa = float(cgpa)
+        s = Student(usn=usn, name=name, stream=stream, age=age, tenth=per10, 
+                    twelfth=per12, cgpa=cgpa, email=email, resume=resume)
+        # print(s)
+        db.session.add(s)
+        db.session.commit()
+        return True
+    except:
+        print(sys.exc_info())
+        return False

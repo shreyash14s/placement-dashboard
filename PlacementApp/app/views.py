@@ -56,6 +56,7 @@ def login():
 @fapp.route('/dashboard/register_for', methods=['POST'])
 # @login_required_student
 def register_company():
+    # usn = request.args.get('usn').upper()
     usn = session['username']
     company_id = request.args.get('company_id')
     control.register_for(usn, company_id)
@@ -92,20 +93,8 @@ def get_companies():
         x.pop('test_date')
         x.pop('interview_date')
         x.pop('register_date')
-    comp_details=str(comp_details).replace("\'","\"")
-    return str(comp_details) 
+    # comp_details=str(comp_details).replace("\'","\"")
+    # return str(comp_details) 
+    return json.dumps(comp_details)
 
-@fapp.route("/dashboard/add_company", methods=['POST'])
-def add_comp():
-    name = request.form('name')
-    company_id = request.form('company_id')
-    cutoff_gpa = request.form('cutoff_gpa')
-    register_date = request.form('register_date')
-    test_date = request.form('test_date')
-    interview_date = request.form('interview_date')
-    tier = request.form('tier')
-    website = request.form('website')
-    postal_address = request.form('postal_address')
-    company_sector = request.form('company_sector')
-        
 # add_company(name,company_id , cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector)
