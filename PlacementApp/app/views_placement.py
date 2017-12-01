@@ -68,9 +68,10 @@ def placement_login():
 # def placement_dashboard():
 #     return render_template('404.html') # Placement dashboard
 
-@fapp.route("/placement/generate/<comp_id>", methods=['GET'])
+@fapp.route("/placement/generate", methods=['GET'])
 # @login_required_placement
-def get_excel(comp_id):
+def get_excel():
+    comp_id = request.args.get('id')
     filename = gen_excel_sheets(comp_id)
     if filename:
         return send_from_directory(EXCEL_FILES_DIR, filename, as_attachment=True)

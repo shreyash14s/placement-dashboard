@@ -99,7 +99,22 @@ def get_companies():
     return json.dumps(comp_details)
 
 # add_company(name,company_id , cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector)
-@fapp.route("/dashboard/get_statistics", methods=['GET'])
-def get_statistics():
-    stats = control.get_stats()
-    return str(stats)
+# @fapp.route("/dashboard/get_statistics", methods=['GET'])
+# def get_statistics():
+#     stats = control.get_stats()
+#     return str(stats)
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+# @fapp.route("/dashboard/get_statistics", methods=['GET'])
+# def get_statistics():
+#     stats = control.get_stats()
+#     bars = ('FTE_INT', 'FTE', 'INT')
+#     y_pos = np.arange(len(bars)) 
+#     # Create bars
+#     plt.bar(y_pos, stats) 
+#     # Create names on the x-axis
+#     plt.xticks(y_pos, bars) 
+#     # Show graphic
+#     plt.show()
+#     return 'ok'

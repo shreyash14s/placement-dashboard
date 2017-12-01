@@ -29,6 +29,8 @@ def login_student(user, pwd):
 def get_all_companies():
     # q = Registrations.query.filter_by(usn=usn)
     # comp = Company.query.filter(Company.register_date>=date.today()).order_by(Company.company_id).all()
+    # comp = (db.session.query(Registrations, Company).filter(Company.register_date>=date.today())
+    #             .filter(Registrations.company_id == Company.company_id).all())
     comp = Company.query.filter(Company.register_date>=date.today()).order_by(Company.company_id).all()
     l = []
     for q in comp:
@@ -158,13 +160,13 @@ def add_student(usn, name, stream, age, per10, per12, cgpa, email, resume):
         print(sys.exc_info())
         return False
 
-def get_statistics():
-        stats = []
-        for i in range(4):
-                q = Offered.query.filter_by(role=i)
-                stat = []
-                for x in q:
-                        stat.append(x.usn)
-                l = len(stat)
-                stats.append(l)
-        return stats
+def get_stats():
+    stats = []
+    for i in range(1,4):
+            q = Offered.query.filter_by(role=i)
+            stat = []
+            for x in q:
+                    stat.append(x.usn)
+            l = len(stat)
+            stats.append(l)
+    return stats
