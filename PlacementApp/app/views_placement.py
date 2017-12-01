@@ -11,6 +11,7 @@ from flask import send_from_directory, render_template, flash, redirect, \
 from config import EXCEL_FILES_DIR
 from functools import wraps
 import json
+import sys, os
 
 def login_required_placement(f):
     @wraps(f)
@@ -96,14 +97,16 @@ def add_student():
 # @login_required_placement
 def add_company():
     # data = json.loads(request.data)
-    data = request.get_json()
-    print('data com', data)
-    b = control.add_student(data['usn'], data['name'], data['stream'],
-                data['age'], data['per10'], data['per12'], data['CGPA'],
-                data['email_id'], data['resume_link'])
-    if b:
-        return '{"status": "ok"}'
-    return ""
+    # data = request.get_json()
+    try:
+        data = request.form
+        # print('data com', data)
+        b = control.add_company(data['name'], data['cgpa'])
+        # if b:
+        #     return redirect('/admin/pages/forms.html')
+    except:
+        print(sys.exc_info())
+    return redirect('/admin/pages/forms.html')
 
 # @fapp.route("/dashboard/add_company", methods=['POST'])
 # def add_comp():
@@ -117,3 +120,12 @@ def add_company():
 #     website = request.form('website')
 #     postal_address = request.form('postal_address')
 #     company_sector = request.form('company_sector')
+
+@fapp.route("/placement/send_mail")
+def call_php():
+    with open('file.txt', 'w') as f:
+        print(request.args.get('message'), file=f)
+    from subprocess import call
+    call(["php", "-f", "app/templates/send.php"])
+    # os.system("php -f app/templates/send.php")
+    return 'ok'

@@ -58,7 +58,8 @@ def login():
 def register_company():
     # usn = request.args.get('usn').upper()
     usn = session['username']
-    company_id = request.args.get('company_id')
+    data = request.get_json()
+    company_id = data['company_id']
     control.register_for(usn, company_id)
     # if usn and company_id and usn == session['username']:
     #     try:

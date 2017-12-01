@@ -19,12 +19,16 @@ def login_student(user, pwd):
     '''
     Returns True if the username and password match.
     '''
-    s = StudentUser.query.filter_by(usn=user.upper()).first()
+    # s = StudentUser.query.filter_by(usn=user.upper()).first()
+    s = Student.query.filter_by(usn=user.upper()).first()
     if s:
-        return s.password == pwd
+        # return s.password == pwd
+        return True
     return False
 
 def get_all_companies():
+    # q = Registrations.query.filter_by(usn=usn)
+    # comp = Company.query.filter(Company.register_date>=date.today()).order_by(Company.company_id).all()
     comp = Company.query.filter(Company.register_date>=date.today()).order_by(Company.company_id).all()
     l = []
     for q in comp:
@@ -90,12 +94,9 @@ def login_placementuser(name,password):
         return s.password == password
     return False
 
-def add_company(name, company_id, cutoff_gpa, register_date, test_date,
-            interview_date, tier, website, postal_address, company_sector):
-    c = Company(name=name, company_id=company_id, cutoff_gpa=cutoff_gpa,
-                test_date=test_date, register_date=register_date,
-                interview_date=interview_date, tier=tier, website=website,
-                postal_address=postal_address, company_sector=company_sector)
+def add_company(name, cutoff_gpa, register_date=None, test_date=None,
+            interview_date=None, tier=None, website=None, postal_address=None, company_sector=None):
+    c = Company(name=name, cutoff_gpa=cutoff_gpa, register_date='2017-12-25')
     db.session.add(c)
     db.session.commit()
 
@@ -137,7 +138,7 @@ def get_new_registrants():
     l = []
     reader = csv.DictReader(io.StringIO(d.text), fieldnames)
     for row in reader:
-        # if not is_in_db(row['usn'].upper()):
+        if not is_in_db(row['usn'].upper()):
             l.append(row)
     return l[1:]
 

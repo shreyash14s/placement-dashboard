@@ -122,6 +122,7 @@
                     <div class="container col-sm-12">
                         <form role = "form">
                             <div class="col-sm-6">
+                                <input type=text id="textabc" placeholder="Enter your message"/>
                                 <input type="button" class="btn btn-default" value="Make announcement" id="pp">
                             </div>
                             <div class="col-sm-6">
@@ -187,10 +188,10 @@
 
         tempbutton.onclick = function(e){
           $.ajax({
-          type: "POST",
-          url: "http://localhost/seproject/send.php",
+          type: "GET",
+          url: "/placement/send_mail?message=" + $('#textabc').val(),
         }).done(function( msg ) {
-          alert( "Mails have been sent: ");
+            alert("Mails have been sent: ");
         });    
         }                
     </script>
