@@ -183,7 +183,16 @@
                             }
         tempbutton.onmouseout=function(e){
                                 e.target.className = "btn btn-default";
-                            }                    
+                            }
+
+        tempbutton.onclick = function(e){
+          $.ajax({
+          type: "POST",
+          url: "http://localhost/seproject/send.php",
+        }).done(function( msg ) {
+          alert( "Mails have been sent: ");
+        });    
+        }                
     </script>
     <script src="../vendor/jquery/jquery.min.js"></script>
 

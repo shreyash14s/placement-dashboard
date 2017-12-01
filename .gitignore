@@ -101,3 +101,8 @@ ENV/
 .mypy_cache/
 
 .vscode
+PlacementApp/.DS_Store
+.DS_Store
+PlacementApp/app/static/admin/.DS_Store
+PlacementApp/app/static/admin/.DS_Store
+PlacementApp/app/templates/companies.html
