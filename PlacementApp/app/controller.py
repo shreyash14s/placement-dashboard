@@ -156,3 +156,14 @@ def add_student(usn, name, stream, age, per10, per12, cgpa, email, resume):
     except:
         print(sys.exc_info())
         return False
+
+def get_statistics():
+        stats = []
+        for i in range(4):
+                q = Offered.query.filter_by(role=i)
+                stat = []
+                for x in q:
+                        stat.append(x.usn)
+                l = len(stat)
+                stats.append(l)
+        return stats

@@ -98,3 +98,7 @@ def get_companies():
     return json.dumps(comp_details)
 
 # add_company(name,company_id , cutoff_gpa, register_date, test_date, interview_date, tier, website, postal_address, company_sector)
+@fapp.route("/dashboard/get_statistics", methods=['GET'])
+def get_statistics():
+    stats = control.get_stats()
+    return str(stats)
