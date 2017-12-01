@@ -102,3 +102,8 @@ ENV/
 
 .vscode
 excels
+
+PlacementApp/.DS_Store
+PlacementApp/app/static/admin/.DS_Store
+PlacementApp/app/static/admin/.DS_Store
+.DS_Store
