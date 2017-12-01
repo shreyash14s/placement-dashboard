@@ -30,6 +30,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    
+
 </head>
 
 <body>
@@ -120,7 +122,7 @@
                     <div class="container col-sm-12">
                         <form role = "form">
                             <div class="col-sm-6">
-                                <input type="button" class="btn btn-default" value="Make announcement" onclick="">
+                                <input type="button" class="btn btn-default" value="Make announcement" id="pp">
                             </div>
                             <div class="col-sm-6">
                                 <div class = "form-group">
@@ -174,6 +176,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
+    <script type="text/javascript">
+        tempbutton = document.getElementById("pp");
+        tempbutton.onmouseover=function(e){
+                                e.target.className = "btn btn-success";
+                            }
+        tempbutton.onmouseout=function(e){
+                                e.target.className = "btn btn-default";
+                            }                    
+    </script>
     <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
