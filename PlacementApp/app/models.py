@@ -35,9 +35,9 @@ class Student(db.Model):
     cgpa = Column(Float, CheckConstraint('cgpa>0 and cgpa<=10.0'))
     email_id = Column(String(50), nullable=False)
     resume_link = Column(String(320))
-    status_placed = Column(String(4))
+    # status_placed = Column(String(4))
     def __init__(self, name=None, usn=None, stream=None, age=None, tenth=None, \
-            twelfth=None, cgpa=None, email=None, resume=None, status=None):
+            twelfth=None, cgpa=None, email=None, resume=None):#, status=None):
         self.name = name
         self.usn = usn
         self.stream = stream
@@ -47,7 +47,7 @@ class Student(db.Model):
         self.cgpa = cgpa
         self.email_id = email
         self.resume_link = resume
-        self.status_placed = status
+        # self.status_placed = status
     def __repr__(self):
         return '<User %r, %s>' % (self.name, self.usn)
 
@@ -66,12 +66,14 @@ class Company(db.Model):
     postal_address = Column(String(500))
     company_sector = Column(String(50))
 
-    def __init__(self, name=None, company_id=None,cutoff_gpa=None, test_date=None, interview_date=None, \
-            tier=None, company=None, website=None, postal_address=None, company_sector=None):
+    def __init__(self, name=None, company_id=None,cutoff_gpa=None, test_date=None,
+            register_date=None, interview_date=None, tier=None, company=None,
+            website=None, postal_address=None, company_sector=None):
         self.name = name
         self.company_id = company_id
         self.cutoff_gpa = cutoff_gpa
         self.test_date = test_date
+        self.register_date = register_date
         self.interview_date = interview_date
         self.tier = tier
         self.website = website
