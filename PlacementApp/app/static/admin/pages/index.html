@@ -41,12 +41,48 @@
                     url: "/placement/get_new_registrants",
                     datatype: 'json',
                     success: function(data){
-                        var jsonobj= JSON.parse(data);
+                        var jsonobj = JSON.parse(data);
                         
-                        for(stud in jsonobj)
-                        {
-                            
-                            tempdiv = document.createElement("div");
+                        var ht = '.panel.panel-default.hidden';
+
+                        for(stud in jsonobj) {
+                            var c = $(ht).clone();
+                            c.removeClass('hidden');
+                            var d1 = ($('<span>').css('padding', '10px').css('font-size', '1.35em')
+                                        .html('Name: ' + jsonobj[stud]['name']));
+                            var d2 = ($('<span>').css('padding', '10px').css('font-size', '1.35em')
+                                        .html('USN: ' + jsonobj[stud]['usn']));
+                            var d3 = ($('<span>').css('padding', '10px').css('font-size', '1.35em')
+                                        .html('CGPA: ' + jsonobj[stud]['CGPA']));
+                            c.find('.panel-data').append(d1).append(d2).append(d3);
+                            // var c = $('<div class="panel panel-default">');
+                            // var pb = $('<div class="panel-body">');
+                            // pb.append(jsonobj[stud]['name']);
+                            // pb.append(jsonobj[stud]['usn']);
+                            // pb.append(jsonobj[stud]['name']);
+                            // bt.html('Authenticate');
+                            // bt.css('float','right');
+                            // bt.addClass("float-right");
+                            // c.html("asknfoke");
+                            console.log('c', c.find('button'));
+                            c.find('button').on('click', c, function (event) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "/placement/add_student",
+                                    dataType: 'text',
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify(jsonobj[stud]),
+                                    success: function(data) {
+                                        event.data.remove();
+                                    },
+                                });
+                                // console.log(event.data);
+                                // event.data.remove();
+                            });
+                            console.log(c);
+
+
+                            /*tempdiv = document.createElement("div");
                             tempbutton=document.createElement('button');
                             tempdiv.style="padding:1.2%";                    
                             tempbutton.type="submit";
@@ -58,7 +94,7 @@
                             // console.log(jsonobj[stud].name);
 
                             tempdiv1 = document.createElement("div");
-                            tempdiv1.style=" background-color: rgb(0, 0, 0); background-color: rgba(0, 255, 255, 0.2);"; 
+                            tempdiv1.style=" background-color: #000000; background-color: rgba(0, 255, 255, 0.2);"; 
                             tempdiv1.className = "col-sm-3"
                             tempdiv1.innerHTML = jsonobj[stud]['name'];
 
@@ -77,17 +113,17 @@
                             tempdiv4.className = "col-sm-3"
                             
 
-                            tempbutton.className = "btn-danger";
+                            tempbutton.className = "btn btn-danger";
                             tempbutton.onmouseover=function(e){
-                                e.target.className = "btn-success";
+                                e.target.className = "btn btn-success";
                             }
                             tempbutton.onmouseout=function(e){
-                                e.target.className = "btn-danger";
+                                e.target.className = "btn btn-danger";
                             }
                             tempbutton.onclick=function(e){
                             e.target.innerHTML = "Authenticated";
                             e.target.disabled = true;
-                            e.target.className = "btn-default";
+                            e.target.className = "btn btn-default";
                             e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement)
                             if(document.getElementById("parent").childElementCount == 0)
                             {
@@ -114,7 +150,8 @@
                             tempdiv.appendChild(tempdiv2);
                             tempdiv.appendChild(tempdiv3);
                             tempdiv.appendChild(tempdiv4);
-                            document.getElementById("parent").appendChild(tempdiv);
+                            document.getElementById("parent").appendChild(tempdiv);*/
+                            $("#parent").append(c);
                         }
                         
                        
@@ -280,6 +317,13 @@
                 
             </div>
             <!-- /#wrapper -->
+
+            <div class="panel panel-default hidden">
+                <div class="panel-body">
+                    <span class="panel-data" style="padding: 5px;"></span>
+                    <button class="btn btn-danger" style="float: right">Authenticate</button>
+                </div>
+            </div>
             
             
             

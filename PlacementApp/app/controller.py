@@ -140,7 +140,8 @@ def get_new_registrants():
     l = []
     reader = csv.DictReader(io.StringIO(d.text), fieldnames)
     for row in reader:
-        if not is_in_db(row['usn'].upper()):
+        row['usn'] = row['usn'].upper() 
+        if not is_in_db(row['usn']):
             l.append(row)
     return l[1:]
 
